@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= title %>
+    </title>
+    <link rel="stylesheet" href="/css/home.css">
+</head>
+
+<body>
+    <h1 id="page-heading">My Contacts List</h1>
+    <div id="contacts-list-container">
+        <ul>
+            <% for (let i of contact_list) { %>
+                <li class="contact">
+                  
+                        <div class="details">
+                            <p>
+                                <%= i.name%>
+                            </p>
+                            <p>
+                                <%= i.phone%>
+                            </p>
+                        </div>
+                        <div class="delete-button">
+                            <a href="/delete-contact/?id=<%= i.id %>&id=<%=i.id%>">
+                                delete
+                            </a>
+                        </div>
+                   
+                </li>
+                <%}%>
+        </ul>
+    </div>
+    <!-- action = routes and method = post/get -->
+    <!-- when the data is sent to the server its in the encoded form and is decoded back with the help of the parser -->
+    <!-- parser adds an body object that holds the encoded properties of the req in the exact same form -->
+    <form id="new-contact-form" action="/create-contact" method="post">
+        <input type="text" name="name" placeholder="Enter name" required>
+        <input type="number" name="phone" placeholder="Enter phone">
+
+        <button type="submit">Add contact</button>
+
+    </form>
+    <script type="text/javascript" src="/js/home.js"></script>
+</body>
+
+</html>
